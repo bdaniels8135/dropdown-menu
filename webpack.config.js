@@ -7,7 +7,7 @@ module.exports = {
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Default Page Title",
+      title: "Drop-Down Menu",
     }),
   ],
   module: {

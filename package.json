@@ -1,7 +1,7 @@
 {
-  "name": "default-project-name",
+  "name": "dropdown-menu",
   "version": "1.0.0",
-  "description": "Default project description.",
+  "description": "Code for a basic dropdown menu",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
