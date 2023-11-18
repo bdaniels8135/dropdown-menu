@@ -1,19 +1,4 @@
-function wrapHtmlElements(wrapperTag, ...elements) {
-  const wrapper = document.createElement(wrapperTag);
-  return wrapper.append(...elements);
-}
-
-function buildIconHtml(icon) {
-  const iconHtml = document.createElement("img");
-  iconHtml.src = icon;
-  return iconHtml;
-}
-
-function buildTextHtml(text) {
-  const textHtml = document.createElement("p");
-  textHtml.innerText = text;
-  return textHtml;
-}
+import { buildIconHtml, buildTextHtml, wrapHtmlElements } from "./htmlBuilders";
 
 function buildDropDownListItemHtml(icon, text) {
   const iconHtml = buildIconHtml(icon);
