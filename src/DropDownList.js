@@ -5,7 +5,9 @@ function buildDropDownListItemHtml(icon, text) {
   iconHtml.classList.add("list-item-icon");
   const textHtml = buildTextHtml(text);
   textHtml.classList.add("list-item-text");
-  return wrapHtmlElements("li", iconHtml, textHtml);
+  const dropDownListItemHtml = wrapHtmlElements("li", iconHtml, textHtml);
+  dropDownListItemHtml.classList.add("drop-down-list-item");
+  return dropDownListItemHtml;
 }
 
 function buildEmptyDropDownListHtml() {
@@ -18,7 +20,9 @@ export default function DropDownList(iconTextClickFuncObjects) {
     const HTML = buildEmptyDropDownListHtml();
     iconTextClickFuncObjects.forEach(({ icon, text, clickFunc }) => {
       const dropDownListItemHtml = buildDropDownListItemHtml(icon, text);
-      dropDownListItemHtml.addEventListener("click", clickFunc);
+      dropDownListItemHtml.addEventListener("click", (event) => {
+        clickFunc(event);
+      });
       HTML.appendChild(dropDownListItemHtml);
     });
     return {
