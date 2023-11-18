@@ -1,7 +1,7 @@
 export function wrapHtmlElements(wrapperTag, ...elements) {
-  const wrapper = document.createElement(wrapperTag);
-  wrapper.append(...elements);
-  return wrapper;
+  const wrapperHtml = document.createElement(wrapperTag);
+  wrapperHtml.append(...elements);
+  return wrapperHtml;
 }
 
 export function buildIconHtml(icon) {
