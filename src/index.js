@@ -40,22 +40,28 @@ const dropDownListIconTextClickFuncObjects = [
 ];
 
 function buildDropDownListBtnHtml(btnIcon) {
-  const dropDownListBtnIconHtml = buildIconHtml(btnIcon);
-  const dropDownListBtnHtml = wrapHtmlElements(
-    "input",
-    dropDownListBtnIconHtml,
-  );
-  dropDownListBtnHtml.id = "drop-down-list-btn";
-  dropDownListBtnHtml.type = "button";
+  const dropDownListBtnHtml = buildIconHtml(btnIcon);
+  dropDownListBtnHtml.classList.add("drop-down-list-btn");
   return dropDownListBtnHtml;
 }
 
+function displayDropDownList(dropDownListHtml) {
+  dropDownListHtml.classList.toggle("displayed");
+}
+
 const dropDownList = DropDownList(dropDownListIconTextClickFuncObjects);
+dropDownList.HTML.classList.add("drop-down-list");
 
 const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
-dropDownListBtnHtml.addEventListener("click", displayDropDownList);
+dropDownListBtnHtml.addEventListener("click", () => {
+  displayDropDownList(dropDownList.HTML);
+});
 
-const header = wrapHtmlElements("header", dropDownListBtnHtml);
+const header = wrapHtmlElements(
+  "header",
+  dropDownListBtnHtml,
+  dropDownList.HTML,
+);
 
 const body = document.querySelector("body");
 body.appendChild(header);
