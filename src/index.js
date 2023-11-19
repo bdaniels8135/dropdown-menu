@@ -1,7 +1,8 @@
 import "./index.css";
+import "./dropDownList.css";
 import menuIcon from "./menu.svg";
 import starIcon from "./star.svg";
-import DropDownList from "./DropDownList";
+import buildDropDownListHtml from "./buildDropDownListHtml";
 import { buildIconHtml, wrapHtmlElements } from "./htmlBuilders";
 
 const dropDownListBtnIcon = menuIcon;
@@ -49,18 +50,20 @@ function displayDropDownList(dropDownListHtml) {
   dropDownListHtml.classList.toggle("displayed");
 }
 
-const dropDownList = DropDownList(dropDownListIconTextClickFuncObjects);
-dropDownList.HTML.classList.add("drop-down-list");
+const dropDownListHtml = buildDropDownListHtml(
+  dropDownListIconTextClickFuncObjects,
+);
+dropDownListHtml.classList.add("drop-down-list");
 
 const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
 dropDownListBtnHtml.addEventListener("click", () => {
-  displayDropDownList(dropDownList.HTML);
+  displayDropDownList(dropDownListHtml);
 });
 
 const header = wrapHtmlElements(
   "header",
   dropDownListBtnHtml,
-  dropDownList.HTML,
+  dropDownListHtml,
 );
 
 const body = document.querySelector("body");
