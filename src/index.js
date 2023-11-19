@@ -82,10 +82,14 @@ const defaultListIconTextClickFuncObjects = [
 const body = document.querySelector("body");
 
 const nav = ResizableNav(defaultListIconTextClickFuncObjects);
+nav.HTML.style.visibility = "hidden";
 
 const header = wrapHtmlElements("header", nav.HTML);
 
 body.appendChild(header);
 
-window.addEventListener("load", nav.fit);
+window.addEventListener("load", () => {
+  nav.fit();
+  nav.HTML.style.visibility = "visible";
+});
 window.addEventListener("resize", nav.fit);
