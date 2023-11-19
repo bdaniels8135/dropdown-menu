@@ -87,21 +87,5 @@ const header = wrapHtmlElements("header", nav.HTML);
 
 body.appendChild(header);
 
-function fitNav() {
-  nav.reset();
-  while (nav.isTabsListOverflowed()) {
-    nav.moveLastTabToDropDown();
-  }
-  const dropDownListBtnHtml = nav.HTML.querySelector(".drop-down-list-btn");
-  const dropDownListHtml = nav.HTML.querySelector(".drop-down-list");
-  if (dropDownListHtml.firstChild) {
-    dropDownListBtnHtml.classList.add("displayed");
-  } else {
-    dropDownListBtnHtml.classList.remove("displayed");
-    dropDownListHtml.classList.remove("displayed");
-  }
-}
-
-fitNav();
-nav.moveLastTabToDropDown();
-window.addEventListener("resize", fitNav);
+window.addEventListener("load", nav.fit);
+window.addEventListener("resize", nav.fit);
