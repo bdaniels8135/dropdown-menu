@@ -1,5 +1,6 @@
 import "./index.css";
 import "./dropDownList.css";
+import "./tabsList.css";
 import menuIcon from "./menu.svg";
 import starIcon from "./star.svg";
 import { wrapHtmlElements } from "./htmlBuilders";
@@ -36,6 +37,46 @@ const defaultListIconTextClickFuncObjects = [
   {
     icon: defaultIcon,
     text: "Option 5",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 6",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 7",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 8",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 9",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 10",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 11",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 12",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 13",
     clickFunc: defaultClickFunc,
   },
 ];

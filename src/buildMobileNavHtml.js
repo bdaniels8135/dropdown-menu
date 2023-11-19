@@ -17,8 +17,8 @@ export default function buildMobileNavHtml(
   dropDownListBtnIcon,
   iconTextClickFuncObjects,
 ) {
-  const tabsListObjects = iconTextClickFuncObjects.slice(0, 2);
-  const dropDownListObjects = iconTextClickFuncObjects.slice(2, 5);
+  const tabsListObjects = iconTextClickFuncObjects.slice(0, 10);
+  const dropDownListObjects = iconTextClickFuncObjects.slice(10, 13);
 
   const tabsListHtml = buildTabsListHtml(tabsListObjects);
   tabsListHtml.classList.add("tabs-list");
