@@ -15,3 +15,15 @@ export function buildTextHtml(text) {
   textHtml.innerText = text;
   return textHtml;
 }
+
+export function buildListItemHtml(icon, text, clickFunc) {
+  const iconHtml = buildIconHtml(icon);
+  iconHtml.classList.add("list-item-icon");
+  const textHtml = buildTextHtml(text);
+  textHtml.classList.add("list-item-text");
+  const listItemHtml = wrapHtmlElements("li", iconHtml, textHtml);
+  listItemHtml.addEventListener("click", (event) => {
+    clickFunc(event);
+  });
+  return listItemHtml;
+}
