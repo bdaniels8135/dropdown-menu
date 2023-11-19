@@ -6,17 +6,25 @@
   box-sizing: border-box;
 }
 
-header {
+header nav {
   display: flex;
-  justify-content: right;
   position: relative;
-  padding: 1rem;
   border-bottom: 4px solid black;
+  padding: 0 1rem;
 }
 
 .drop-down-list-btn {
-  padding: .25rem .5rem;
+  visibility: hidden;
+  padding: .5rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-self: right;
+  align-self: center;
+}
+
+.drop-down-list-btn.displayed {
+  visibility: visible;
 }
 
 .drop-down-list-btn:hover {

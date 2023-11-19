@@ -1,18 +1,17 @@
 import "./index.css";
 import "./dropDownList.css";
-import menuIcon from "./menu.svg";
+import "./tabsList.css";
 import starIcon from "./star.svg";
-import buildDropDownListHtml from "./buildDropDownListHtml";
-import { buildIconHtml, wrapHtmlElements } from "./htmlBuilders";
+import { wrapHtmlElements } from "./htmlBuilders";
+import ResizableNav from "./ResizableNav";
 
-const dropDownListBtnIcon = menuIcon;
 const defaultIcon = starIcon;
 
 function defaultClickFunc(event) {
   console.log(event.currentTarget);
 }
 
-const dropDownListIconTextClickFuncObjects = [
+const defaultListIconTextClickFuncObjects = [
   {
     icon: defaultIcon,
     text: "Option 1",
@@ -38,37 +37,59 @@ const dropDownListIconTextClickFuncObjects = [
     text: "Option 5",
     clickFunc: defaultClickFunc,
   },
+  {
+    icon: defaultIcon,
+    text: "Option 6",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 7",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 8",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 9",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 10",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 11",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 12",
+    clickFunc: defaultClickFunc,
+  },
+  {
+    icon: defaultIcon,
+    text: "Option 13",
+    clickFunc: defaultClickFunc,
+  },
 ];
 
-function buildDropDownListBtnHtml(btnIcon) {
-  const dropDownListBtnIconHtml = buildIconHtml(btnIcon);
-  const dropDownListBtnHtml = wrapHtmlElements("div", dropDownListBtnIconHtml);
-  dropDownListBtnHtml.classList.add("drop-down-list-btn");
-  return dropDownListBtnHtml;
-}
-
-function toggleDisplayDropDownList(dropDownListHtml) {
-  dropDownListHtml.classList.toggle("displayed");
-}
-
-const dropDownListHtml = buildDropDownListHtml(
-  dropDownListIconTextClickFuncObjects,
-);
-dropDownListHtml.classList.add("drop-down-list");
-dropDownListHtml.addEventListener("click", () => {
-  toggleDisplayDropDownList(dropDownListHtml);
-});
-
-const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
-dropDownListBtnHtml.addEventListener("click", () => {
-  toggleDisplayDropDownList(dropDownListHtml);
-});
-
-const header = wrapHtmlElements(
-  "header",
-  dropDownListBtnHtml,
-  dropDownListHtml,
-);
-
 const body = document.querySelector("body");
+
+const nav = ResizableNav(defaultListIconTextClickFuncObjects);
+nav.HTML.style.visibility = "hidden";
+
+const header = wrapHtmlElements("header", nav.HTML);
+
 body.appendChild(header);
+
+window.addEventListener("load", () => {
+  nav.fit();
+  nav.HTML.style.visibility = "visible";
+});
+window.addEventListener("resize", nav.fit);
