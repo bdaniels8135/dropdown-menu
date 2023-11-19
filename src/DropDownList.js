@@ -2,6 +2,7 @@ import { buildListItemHtml } from "./htmlBuilders";
 
 export default function DropDownList(iconTextClickFuncObjects) {
   const HTML = document.createElement("ul");
+  HTML.classList.add("drop-down-list");
 
   function insertNewItemAtBeginning(iconTextClickFuncObject) {
     const { icon, text, clickFunc } = iconTextClickFuncObject;
