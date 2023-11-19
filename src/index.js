@@ -98,6 +98,7 @@ function fitNav() {
     dropDownListBtnHtml.classList.add("displayed");
   } else {
     dropDownListBtnHtml.classList.remove("displayed");
+    dropDownListHtml.classList.remove("displayed");
   }
 }
 
