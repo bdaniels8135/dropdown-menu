@@ -9,7 +9,7 @@ const dropDownListBtnIcon = menuIcon;
 const defaultIcon = starIcon;
 
 function defaultClickFunc(event) {
-  console.log(event.target);
+  console.log(event.currentTarget);
 }
 
 const dropDownListIconTextClickFuncObjects = [
@@ -41,12 +41,13 @@ const dropDownListIconTextClickFuncObjects = [
 ];
 
 function buildDropDownListBtnHtml(btnIcon) {
-  const dropDownListBtnHtml = buildIconHtml(btnIcon);
+  const dropDownListBtnIconHtml = buildIconHtml(btnIcon);
+  const dropDownListBtnHtml = wrapHtmlElements("div", dropDownListBtnIconHtml);
   dropDownListBtnHtml.classList.add("drop-down-list-btn");
   return dropDownListBtnHtml;
 }
 
-function displayDropDownList(dropDownListHtml) {
+function toggleDisplayDropDownList(dropDownListHtml) {
   dropDownListHtml.classList.toggle("displayed");
 }
 
@@ -54,10 +55,13 @@ const dropDownListHtml = buildDropDownListHtml(
   dropDownListIconTextClickFuncObjects,
 );
 dropDownListHtml.classList.add("drop-down-list");
+dropDownListHtml.addEventListener("click", () => {
+  toggleDisplayDropDownList(dropDownListHtml);
+});
 
 const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
 dropDownListBtnHtml.addEventListener("click", () => {
-  displayDropDownList(dropDownListHtml);
+  toggleDisplayDropDownList(dropDownListHtml);
 });
 
 const header = wrapHtmlElements(

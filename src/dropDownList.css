@@ -3,7 +3,7 @@
   opacity: 0;
   scale: 0;
   position: absolute;
-  top: 4rem;
+  top: 5rem;
   right: 0;
   border: 1px solid black;
   display: flex;
@@ -24,6 +24,15 @@
   align-items: center;
   border: 1px solid black;
   padding: 1rem 1.5rem;
+  cursor: pointer;
+}
+
+.drop-down-list-item:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.drop-down-list-item:active {
+  background-color: rgb(200, 200, 200);
 }
 
 .list-item-icon {

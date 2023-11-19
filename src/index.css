@@ -15,5 +15,21 @@ header {
 }
 
 .drop-down-list-btn {
+  border: 1px solid white;
+  padding: .25rem .5rem;
+  cursor: pointer;
+}
+
+.drop-down-list-btn:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.drop-down-list-btn:active {
+  border-color: black;
+  background-color: rgb(200, 200, 200);
+  box-shadow: .25rem .25rem .5rem grey;
+}
+
+.drop-down-list-btn img {
   height: 2rem;
 }
