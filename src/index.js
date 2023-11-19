@@ -1,12 +1,10 @@
 import "./index.css";
 import "./dropDownList.css";
 import "./tabsList.css";
-import menuIcon from "./menu.svg";
 import starIcon from "./star.svg";
 import { wrapHtmlElements } from "./htmlBuilders";
-import buildMobileNavHtml from "./buildMobileNavHtml";
+import ResizableNav from "./ResizableNav";
 
-const dropDownListBtnIcon = menuIcon;
 const defaultIcon = starIcon;
 
 function defaultClickFunc(event) {
@@ -83,10 +81,9 @@ const defaultListIconTextClickFuncObjects = [
 
 const body = document.querySelector("body");
 
-const mobileNavHtml = buildMobileNavHtml(
-  dropDownListBtnIcon,
-  defaultListIconTextClickFuncObjects,
-);
+const nav = ResizableNav(defaultListIconTextClickFuncObjects);
 
-const header = wrapHtmlElements("header", mobileNavHtml);
+const header = wrapHtmlElements("header", nav.HTML);
 body.appendChild(header);
+
+nav.reducesTabsByOne();
