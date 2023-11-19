@@ -31,9 +31,6 @@ export default function ResizableNav(
   });
 
   function buildHtml() {
-    const tabsListHtml = tabsList.HTML;
-    const dropDownListHtml = dropDownList.HTML;
-
     const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
     dropDownListBtnHtml.addEventListener("click", () => {
       toggleDisplayedClass(dropDownList.HTML);
@@ -41,9 +38,9 @@ export default function ResizableNav(
 
     return wrapHtmlElements(
       "nav",
-      tabsListHtml,
+      tabsList.HTML,
       dropDownListBtnHtml,
-      dropDownListHtml,
+      dropDownList.HTML,
     );
   }
 
