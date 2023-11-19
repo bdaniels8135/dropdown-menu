@@ -20,39 +20,63 @@ export default function ResizableNav(
   listObjects,
   dropDownListBtnIcon = defaultDropDownMenuIcon,
 ) {
-  return (() => {
-    const tabsListObjects = [];
-    const dropDownListObjects = [...listObjects];
+  const tabsListObjects = [...listObjects];
+  const dropDownListObjects = [];
 
-    const tabsList = TabsList(tabsListObjects);
-    tabsList.HTML.classList.add("tabs-list");
-    const HTML = wrapHtmlElements("nav", tabsList.HTML);
+  const tabsList = TabsList(tabsListObjects);
 
-    if (dropDownListObjects.length > 0) {
-      const dropDownList = DropDownList(dropDownListObjects);
-      dropDownList.HTML.classList.add("drop-down-list");
-      dropDownList.HTML.addEventListener("click", () => {
-        toggleDisplayedClass(dropDownList.HTML);
-      });
+  const dropDownList = DropDownList(dropDownListObjects);
+  dropDownList.HTML.addEventListener("click", () => {
+    toggleDisplayedClass(dropDownList.HTML);
+  });
 
-      const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
-      dropDownListBtnHtml.addEventListener("click", () => {
-        toggleDisplayedClass(dropDownList.HTML);
-      });
-      HTML.append(dropDownListBtnHtml, dropDownList.HTML);
-    }
+  function buildHtml() {
+    const tabsListHtml = tabsList.HTML;
+    const dropDownListHtml = dropDownList.HTML;
 
-    function isTabsListOverflowed() {
-      if (tabsList.HTML.clientWidth < tabsList.HTML.scrollWidth) return true;
-      return false;
-    }
+    const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
+    dropDownListBtnHtml.addEventListener("click", () => {
+      toggleDisplayedClass(dropDownList.HTML);
+    });
 
-    function moveLastTabListObjectToDropDown() {
-      dropDownListObjects.unshift(tabsListObjects.pop());
-    }
+    return wrapHtmlElements(
+      "nav",
+      tabsListHtml,
+      dropDownListBtnHtml,
+      dropDownListHtml,
+    );
+  }
 
-    return {
-      HTML,
-    };
-  })();
+  function isTabsListOverflowed() {
+    if (tabsList.HTML.clientWidth < tabsList.HTML.scrollWidth) return true;
+    return false;
+  }
+
+  function moveLastTabToDropDown() {
+    const movedListObject = tabsListObjects.pop();
+    dropDownListObjects.unshift(movedListObject);
+    tabsList.removeLastItem();
+    dropDownList.insertNewItemAtBeginning(movedListObject);
+  }
+
+  function moveFirstDropDownToTab() {
+    const movedListObject = dropDownListObjects.shift();
+    tabsListObjects.push(movedListObject);
+    dropDownList.removeFirstItem();
+    tabsList.insertNewItemAtEnd(movedListObject);
+  }
+
+  function reset() {
+    while (dropDownList.HTML.firstChild) moveFirstDropDownToTab();
+  }
+
+  const HTML = buildHtml();
+  HTML.classList.add("resizable-nav");
+
+  return {
+    HTML,
+    isTabsListOverflowed,
+    moveLastTabToDropDown,
+    reset,
+  };
 }
