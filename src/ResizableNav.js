@@ -30,22 +30,16 @@ export default function ResizableNav(
     toggleDisplayedClass(dropDownList.HTML);
   });
 
-  function buildHtml() {
-    const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
-    dropDownListBtnHtml.addEventListener("click", () => {
-      toggleDisplayedClass(dropDownList.HTML);
-    });
-
-    return wrapHtmlElements(
-      "nav",
-      tabsList.HTML,
-      dropDownListBtnHtml,
-      dropDownList.HTML,
-    );
-  }
+  const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
+  dropDownListBtnHtml.addEventListener("click", () => {
+    toggleDisplayedClass(dropDownList.HTML);
+  });
 
   function isTabsListOverflowed() {
-    if (tabsList.HTML.clientWidth < tabsList.HTML.scrollWidth) return true;
+    console.log(
+      `Overflow Checked. Scroll: ${tabsList.HTML.scrollWidth} Client: ${tabsList.HTML.clientWidth}`,
+    );
+    if (tabsList.HTML.scrollWidth > tabsList.HTML.clientWidth) return true;
     return false;
   }
 
@@ -54,6 +48,7 @@ export default function ResizableNav(
     dropDownListObjects.unshift(movedListObject);
     tabsList.removeLastItem();
     dropDownList.insertNewItemAtBeginning(movedListObject);
+    console.log(`Item Moved ${movedListObject}`);
   }
 
   function moveFirstDropDownToTab() {
@@ -64,16 +59,33 @@ export default function ResizableNav(
   }
 
   function reset() {
+    console.log("Reset Run");
     while (dropDownList.HTML.firstChild) moveFirstDropDownToTab();
   }
 
-  const HTML = buildHtml();
+  function fit() {
+    reset();
+    while (isTabsListOverflowed()) {
+      moveLastTabToDropDown();
+    }
+    if (dropDownList.HTML.firstChild) {
+      dropDownListBtnHtml.classList.add("displayed");
+    } else {
+      dropDownListBtnHtml.classList.remove("displayed");
+      dropDownList.HTML.classList.remove("displayed");
+    }
+  }
+
+  const HTML = wrapHtmlElements(
+    "nav",
+    tabsList.HTML,
+    dropDownListBtnHtml,
+    dropDownList.HTML,
+  );
   HTML.classList.add("resizable-nav");
 
   return {
     HTML,
-    isTabsListOverflowed,
-    moveLastTabToDropDown,
-    reset,
+    fit,
   };
 }
