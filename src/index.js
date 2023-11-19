@@ -92,6 +92,13 @@ function fitNav() {
   while (nav.isTabsListOverflowed()) {
     nav.moveLastTabToDropDown();
   }
+  const dropDownListBtnHtml = nav.HTML.querySelector(".drop-down-list-btn");
+  const dropDownListHtml = nav.HTML.querySelector(".drop-down-list");
+  if (dropDownListHtml.firstChild) {
+    dropDownListBtnHtml.classList.add("displayed");
+  } else {
+    dropDownListBtnHtml.classList.remove("displayed");
+  }
 }
 
 fitNav();
