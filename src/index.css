@@ -4,9 +4,10 @@
   font-size: 1rem;
   font-weight: 500;
   box-sizing: border-box;
+  /* border: 1px dashed red; */
 }
 
-header {
+header nav {
   display: flex;
   justify-content: right;
   position: relative;
@@ -17,6 +18,8 @@ header {
 .drop-down-list-btn {
   padding: .25rem .5rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .drop-down-list-btn:hover {
