@@ -2,6 +2,7 @@
   list-style: none;
   display: flex;
   gap: 1rem;
+  overflow: hidden;
 }
 
 .tabs-list-item {
@@ -32,4 +33,5 @@
 
 .list-item-text {
   font-size: 1.5rem;
+  white-space: nowrap;
 }
