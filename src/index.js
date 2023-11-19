@@ -2,8 +2,8 @@ import "./index.css";
 import "./dropDownList.css";
 import menuIcon from "./menu.svg";
 import starIcon from "./star.svg";
-import buildDropDownListHtml from "./buildDropDownListHtml";
-import { buildIconHtml, wrapHtmlElements } from "./htmlBuilders";
+import { wrapHtmlElements } from "./htmlBuilders";
+import buildMobileNavHtml from "./buildMobileNavHtml";
 
 const dropDownListBtnIcon = menuIcon;
 const defaultIcon = starIcon;
@@ -12,7 +12,7 @@ function defaultClickFunc(event) {
   console.log(event.currentTarget);
 }
 
-const dropDownListIconTextClickFuncObjects = [
+const defaultListIconTextClickFuncObjects = [
   {
     icon: defaultIcon,
     text: "Option 1",
@@ -40,35 +40,12 @@ const dropDownListIconTextClickFuncObjects = [
   },
 ];
 
-function buildDropDownListBtnHtml(btnIcon) {
-  const dropDownListBtnIconHtml = buildIconHtml(btnIcon);
-  const dropDownListBtnHtml = wrapHtmlElements("div", dropDownListBtnIconHtml);
-  dropDownListBtnHtml.classList.add("drop-down-list-btn");
-  return dropDownListBtnHtml;
-}
-
-function toggleDisplayDropDownList(dropDownListHtml) {
-  dropDownListHtml.classList.toggle("displayed");
-}
-
-const dropDownListHtml = buildDropDownListHtml(
-  dropDownListIconTextClickFuncObjects,
-);
-dropDownListHtml.classList.add("drop-down-list");
-dropDownListHtml.addEventListener("click", () => {
-  toggleDisplayDropDownList(dropDownListHtml);
-});
-
-const dropDownListBtnHtml = buildDropDownListBtnHtml(dropDownListBtnIcon);
-dropDownListBtnHtml.addEventListener("click", () => {
-  toggleDisplayDropDownList(dropDownListHtml);
-});
-
-const header = wrapHtmlElements(
-  "header",
-  dropDownListBtnHtml,
-  dropDownListHtml,
-);
-
 const body = document.querySelector("body");
+
+const mobileNavHtml = buildMobileNavHtml(
+  dropDownListBtnIcon,
+  defaultListIconTextClickFuncObjects,
+);
+
+const header = wrapHtmlElements("header", mobileNavHtml);
 body.appendChild(header);
