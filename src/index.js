@@ -84,6 +84,16 @@ const body = document.querySelector("body");
 const nav = ResizableNav(defaultListIconTextClickFuncObjects);
 
 const header = wrapHtmlElements("header", nav.HTML);
+
 body.appendChild(header);
 
-nav.reducesTabsByOne();
+function fitNav() {
+  nav.reset();
+  while (nav.isTabsListOverflowed()) {
+    nav.moveLastTabToDropDown();
+  }
+}
+
+fitNav();
+nav.moveLastTabToDropDown();
+window.addEventListener("resize", fitNav);
